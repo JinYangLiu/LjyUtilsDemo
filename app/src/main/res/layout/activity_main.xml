@@ -40,6 +40,34 @@
                 android:layout_width="match_parent"
                 android:onClick="onMainBtnClick"
                 android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_addin"
+                android:text="addBook_in"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:onClick="onMainBtnClick"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_addout"
+                android:text="addBook_out"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:onClick="onMainBtnClick"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_addinout"
+                android:text="addBook_inout"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:onClick="onMainBtnClick"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_get"
+                android:text="getBooks"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:onClick="onMainBtnClick"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

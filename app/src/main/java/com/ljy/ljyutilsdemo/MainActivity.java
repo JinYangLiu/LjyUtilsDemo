@@ -12,6 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ljy.ljyutils.IMyAidlInterface;
+import com.ljy.ljyutils.bean.Book;
+import com.ljy.util.LjyLogUtil;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             mAidlInterface = IMyAidlInterface.Stub.asInterface(service);
             try {
                 mAidlInterface.callByService();
+
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -69,7 +74,41 @@ public class MainActivity extends AppCompatActivity {
 
                 //绑定服务,传入intent和ServiceConnection对象
                 bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
-                isServiceBind=true;
+                isServiceBind = true;
+                break;
+            case R.id.btn_addin:
+
+                try {
+                    mAidlInterface.addBookIn(new Book("三国志in", 188));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.btn_addout:
+                try {
+                    mAidlInterface.addBookout(new Book("三国志out", 255));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.btn_addinout:
+                try {
+                    mAidlInterface.addBookInout(new Book("三国志inout", 911));
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.btn_get:
+                try {
+                    List<Book> books = mAidlInterface.getBooks();
+                    if (books != null) {
+                        for (Book book : books) {
+                            LjyLogUtil.i(book.toString());
+                        }
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 break;
@@ -81,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         if (isServiceBind) {
             unbindService(mServiceConnection);
-            isServiceBind=false;
+            isServiceBind = false;
         }
     }
 }
